@@ -19,12 +19,15 @@
 
 #include <QObject>
 #include <QString>
+#include <qqmlintegration.h>
 
 class QDBusInterface;
 
 class SessionBroadcast: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
 public:
     explicit SessionBroadcast(QObject *parent = 0);
@@ -32,14 +35,14 @@ public:
     Q_INVOKABLE void requestUrlStart(const QString &username, const QString &url);
     Q_INVOKABLE void requestHomeShown(const QString &username);
 
-Q_SIGNALS:
+signals:
     // This signal isn't actually used by the shell
     // (lomiri-greeter-session-broadcast handles launching an app for us), but
     // it's useful for testing the plugin.
     void startUrl(const QString &url);
     void showHome();
 
-private Q_SLOTS:
+private slots:
     void onStartUrl(const QString &username, const QString &url);
     void onShowHome(const QString &username);
 
