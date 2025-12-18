@@ -22,6 +22,4 @@
 void GlobalShortcutPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("GlobalShortcut"));
-
-    qmlRegisterType<GlobalShortcut>(uri, 1, 0, "GlobalShortcut");
 }
