@@ -48,6 +48,7 @@ Powerd::Powerd(QObject* parent)
     lomiriScreen(nullptr),
     cachedStatus(Status::On)
 {
+    qDebug()<<Q_FUNC_INFO;
     lomiriScreen = new QDBusInterface(QStringLiteral("com.canonical.Unity.Screen"),
                                      QStringLiteral("/com/canonical/Unity/Screen"),
                                      QStringLiteral("com.canonical.Unity.Screen"),
