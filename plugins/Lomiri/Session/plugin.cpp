@@ -47,6 +47,4 @@ void SessionPlugin::registerTypes(const char *uri)
 #endif
 
     Q_ASSERT(uri == QLatin1String("Lomiri.Session"));
-    qmlRegisterSingletonType<DBusLomiriSessionService>(uri, 0, 1, "DBusLomiriSessionService", dbuslomirisessionservice_provider);
-    qmlRegisterSingletonType<OrientationLock>(uri, 0, 1, "OrientationLock", orientationlock_provider);
 }
