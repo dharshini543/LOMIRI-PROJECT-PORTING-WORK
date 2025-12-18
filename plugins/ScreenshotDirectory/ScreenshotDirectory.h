@@ -19,16 +19,18 @@
 
 #include <QObject>
 #include <QString>
+#include <qqmlintegration.h>
 
 class ScreenshotDirectory: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 
 public:
     explicit ScreenshotDirectory(QObject *parent = 0);
     ~ScreenshotDirectory() = default;
 
-public Q_SLOTS:
+public slots:
     QString makeFileName() const;
 
 private:
