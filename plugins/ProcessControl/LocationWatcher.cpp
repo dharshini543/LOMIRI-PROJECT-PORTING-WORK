@@ -39,7 +39,7 @@ class LocationWatcherPrivate: public QObject
 public:
     LocationWatcherPrivate(ProcessControl *processControl);
 
-private Q_SLOTS:
+private slots:
     void onPropertiesChanged(const QString &interface,
                              const QVariantMap &changedProps,
                              const QStringList &invalidatedProps);
