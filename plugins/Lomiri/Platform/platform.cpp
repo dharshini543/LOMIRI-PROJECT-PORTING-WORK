@@ -23,6 +23,7 @@
 Platform::Platform(QObject *parent)
     : QObject(parent), m_isPC(true), m_isMultiSession(true)
 {
+    qDebug()<<Q_FUNC_INFO;
     QMetaObject::invokeMethod(this, "init");
 }
 

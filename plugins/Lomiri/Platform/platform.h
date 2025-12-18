@@ -18,6 +18,7 @@
 #define PLATFORM_H
 
 #include <QDBusInterface>
+#include <qqmlintegration.h>
 
 /**
  * @brief The Platform class
@@ -27,6 +28,8 @@
 class Platform: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     /**
      * The chassis property
      *
@@ -52,7 +55,7 @@ public:
 
     bool isMultiSession() const;
 
-private Q_SLOTS:
+private slots:
     void init();
 
 private:
