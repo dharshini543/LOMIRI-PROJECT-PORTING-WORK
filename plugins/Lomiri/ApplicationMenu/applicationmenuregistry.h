@@ -27,6 +27,8 @@ Q_DECLARE_LOGGING_CATEGORY(LOMIRI_APPMENU)
 class MenuServicePath : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("You cannot create a MenuServicePath")
     Q_PROPERTY(QByteArray service MEMBER m_service CONSTANT)
     Q_PROPERTY(QByteArray menuPath MEMBER m_menuPath CONSTANT)
     Q_PROPERTY(QByteArray actionPath MEMBER m_actionPath CONSTANT)
@@ -66,7 +68,7 @@ public:
                              const QString &service);
     void UnregisterSurfaceMenu(const QString &surfaceId, const QDBusObjectPath &menuObjectPath);
 
-Q_SIGNALS:
+signals:
     void appMenuRegistered(uint processId);
     void appMenuUnregistered(uint processId);
 
