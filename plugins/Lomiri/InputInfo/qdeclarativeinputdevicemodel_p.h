@@ -49,8 +49,9 @@
 class QDeclarativeInputDeviceModel : public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(QDeclarativeInputDeviceModel)
-    Q_PROPERTY(QInputDevice::InputType deviceFilter READ deviceFilter WRITE setDeviceFilter NOTIFY deviceFilterChanged)
+    Q_PROPERTY(LomiriInputDevice::InputType deviceFilter READ deviceFilter WRITE setDeviceFilter NOTIFY deviceFilterChanged)
 
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 
@@ -72,28 +73,28 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    void setDeviceFilter(QInputDevice::InputType filter);
-    QInputDevice::InputType deviceFilter();
+    void setDeviceFilter(LomiriInputDevice::InputType filter);
+    LomiriInputDevice::InputType deviceFilter();
 
     Q_INVOKABLE int indexOf(const QString &devicePath) const;
 
-    Q_INVOKABLE QInputDevice *get(int index) const;
+    Q_INVOKABLE LomiriInputDevice *get(int index) const;
     QHash<int, QByteArray> roleNames() const override;
 
-Q_SIGNALS:
+signals:
     void deviceAdded(const QString &devicePath);
     void deviceRemoved(const QString &devicePath);
-    void deviceFilterChanged(const QInputDevice::InputType filter);
+    void deviceFilterChanged(const LomiriInputDevice::InputType filter);
     void countChanged();
 
-public Q_SLOTS:
+public slots:
     void updateDeviceList();
 private:
     QInputDeviceManager *deviceInfo;
-    QVector<QInputDevice *> inputDevices;
-    QInputDevice::InputType currentFilter;
+    QVector<LomiriInputDevice *> inputDevices;
+    LomiriInputDevice::InputType currentFilter;
 
-private Q_SLOTS:
+private slots:
     void addedDevice(const QString &);
     void removedDevice(const QString &path);
 
