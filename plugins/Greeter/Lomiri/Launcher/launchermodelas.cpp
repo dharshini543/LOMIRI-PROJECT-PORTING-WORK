@@ -30,6 +30,7 @@ LauncherModel::LauncherModel(QObject *parent):
     m_accounts(new AccountsServiceDBusAdaptor(this)),
     m_onlyPinned(true)
 {
+    qDebug()<<Q_FUNC_INFO;
     connect(m_accounts, &AccountsServiceDBusAdaptor::propertiesChanged, this, &LauncherModel::propertiesChanged);
     refresh();
 }
@@ -137,6 +138,7 @@ void LauncherModel::setUser(const QString &username)
 
 QString LauncherModel::getUrlForAppId(const QString &appId) const
 {
+    qDebug()<<Q_FUNC_INFO;
     // appId is either an appId or a legacy app name.  Let's find out which
     if (appId.isEmpty()) {
         return QString();

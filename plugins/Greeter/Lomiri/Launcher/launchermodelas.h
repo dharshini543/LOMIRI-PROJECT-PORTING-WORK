@@ -21,6 +21,7 @@
 #include <lomiri/shell/application/ApplicationManagerInterface.h>
 
 #include <QAbstractListModel>
+#include <qqmlintegration.h>
 
 class LauncherItem;
 class GSettings;
@@ -32,6 +33,8 @@ using namespace lomiri::shell::application;
 class LauncherModel: public LauncherModelInterface
 {
    Q_OBJECT
+   QML_ELEMENT
+   QML_SINGLETON
 
 public:
     LauncherModel(QObject *parent = 0);
