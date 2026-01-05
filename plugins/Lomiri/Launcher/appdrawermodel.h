@@ -18,6 +18,7 @@
 #include <memory>
 #include <QFutureWatcher>
 #include <lomiri/shell/launcher/AppDrawerModelInterface.h>
+#include <qqmlintegration.h>
 
 #include "launcheritem.h"
 
@@ -27,6 +28,7 @@ class XdgWatcher;
 class AppDrawerModel: public AppDrawerModelInterface
 {
     Q_OBJECT
+    QML_ELEMENT
     // TODO: Add this to AppDrawerModelInterface in lomiri-api.
     // Or, better yet, remove AppDrawerModelInterface from lomiri-api.
     Q_PROPERTY(bool refreshing READ refreshing NOTIFY refreshingChanged)
@@ -40,10 +42,10 @@ public:
     bool refreshing();
     Q_INVOKABLE void refresh();
 
-Q_SIGNALS:
+signals:
     void refreshingChanged();
 
-private Q_SLOTS:
+private slots:
     void appAdded(const QString &appId);
     void appRemoved(const QString &appId);
     void appInfoChanged(const QString &appId);

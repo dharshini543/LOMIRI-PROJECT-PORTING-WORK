@@ -69,7 +69,7 @@ bool QuickListEntry::hasSeparator() const
     return m_hasSeparator;
 }
 
-bool QuickListEntry::operator==(const QuickListEntry &other)
+bool QuickListEntry::operator==(const QuickListEntry &other) const
 {
     return !other.actionId().isEmpty() && other.actionId() == m_actionId;
 }

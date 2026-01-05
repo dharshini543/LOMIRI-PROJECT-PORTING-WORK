@@ -33,7 +33,7 @@ public:
     QString introspect (const QString &path) const override;
     bool handleMessage(const QDBusMessage& message, const QDBusConnection& connection) override;
 
-Q_SIGNALS:
+signals:
     void countChanged(const QString &appId, int count);
     void countVisibleChanged(const QString &appId, bool countVisible);
     void progressChanged(const QString &appId, int progress);

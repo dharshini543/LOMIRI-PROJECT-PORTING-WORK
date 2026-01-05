@@ -25,7 +25,6 @@
 
 // local
 #include "launchermodel.h"
-#include "launcheritem.h"
 #include "appdrawermodel.h"
 
 using namespace lomiri::shell::launcher;
@@ -42,9 +41,4 @@ void LomiriLauncherPlugin::registerTypes(const char *uri)
     qmlRegisterUncreatableType<LauncherModelInterface>(uri, 0, 1, "LauncherModelInterface", QStringLiteral("Abstract Interface. Cannot be instantiated."));
     qmlRegisterUncreatableType<LauncherItemInterface>(uri, 0, 1, "LauncherItemInterface", QStringLiteral("Abstract Interface. Cannot be instantiated."));
     qmlRegisterUncreatableType<QuickListModelInterface>(uri, 0, 1, "QuickListInterface", QStringLiteral("Abstract Interface. Cannot be instantiated."));
-
-    qmlRegisterSingletonType<LauncherModel>(uri, 0, 1, "LauncherModel", modelProvider);
-    qmlRegisterUncreatableType<LauncherItem>(uri, 0, 1, "LauncherItem", QStringLiteral("Can't create new Launcher Items in QML. Get them from the LauncherModel."));
-    qmlRegisterUncreatableType<QuickListModel>(uri, 0, 1, "QuickListModel", QStringLiteral("Can't create a QuickListModel in QML. Get them from the LauncherItems."));
-    qmlRegisterType<AppDrawerModel>(uri, 0, 1, "AppDrawerModel");
 }

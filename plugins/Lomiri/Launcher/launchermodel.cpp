@@ -27,6 +27,7 @@
 
 #include <QDesktopServices>
 #include <QDebug>
+#include <QRegularExpression>
 
 using namespace lomiri::shell::application;
 
@@ -37,6 +38,7 @@ LauncherModel::LauncherModel(QObject *parent):
     m_asAdapter(new ASAdapter()),
     m_appManager(nullptr)
 {
+    qDebug()<<Q_FUNC_INFO;
     connect(m_dbusIface, &DBusInterface::countChanged, this, &LauncherModel::countChanged);
     connect(m_dbusIface, &DBusInterface::countVisibleChanged, this, &LauncherModel::countVisibleChanged);
     connect(m_dbusIface, &DBusInterface::progressChanged, this, &LauncherModel::progressChanged);
@@ -212,7 +214,7 @@ void LauncherModel::quickListActionInvoked(const QString &appId, int actionIndex
                 for (int i = 0; i < appInfo->surfaceList()->count(); ++i) {
                     MirSurfaceInterface *iface = appInfo->surfaceList()->get(i);
                     QString id = actionId;
-                    id.remove(QRegExp("^surface_"));
+                    id.remove(QRegularExpression("^surface_"));
                     if (id == iface->persistentId()) {
                         iface->activate();
                     }
@@ -229,6 +231,7 @@ void LauncherModel::quickListActionInvoked(const QString &appId, int actionIndex
 
 void LauncherModel::setUser(const QString &username)
 {
+    qDebug()<<Q_FUNC_INFO;
     Q_UNUSED(username)
 }
 

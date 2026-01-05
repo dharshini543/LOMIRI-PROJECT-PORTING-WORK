@@ -21,6 +21,7 @@
 #include <lomiri/shell/application/ApplicationManagerInterface.h>
 
 #include <QAbstractListModel>
+#include <qqmlintegration.h>
 
 class LauncherItem;
 class GSettings;
@@ -33,6 +34,8 @@ using namespace lomiri::shell::application;
 class LauncherModel: public LauncherModelInterface
 {
    Q_OBJECT
+   QML_ELEMENT
+   QML_SINGLETON
 
 public:
     LauncherModel(QObject *parent = nullptr);
@@ -57,7 +60,7 @@ public:
 
     int findApplication(const QString &appId);
 
-public Q_SLOTS:
+public slots:
     void requestRemove(const QString &appId) override;
     Q_INVOKABLE void refresh();
     Q_INVOKABLE void alert(const QString &appId);
@@ -67,7 +70,7 @@ private:
 
     void unpin(const QString &appId);
 
-private Q_SLOTS:
+private slots:
     void countChanged(const QString &appId, int count);
     void countVisibleChanged(const QString &appId, bool count);
     void progressChanged(const QString &appId, int progress);

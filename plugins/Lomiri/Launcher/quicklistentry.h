@@ -40,7 +40,7 @@ public:
     void setHasSeparator(bool hasSeparator);
     bool hasSeparator() const;
 
-    bool operator==(const QuickListEntry & other);
+    bool operator==(const QuickListEntry & other) const;
 
     bool isPrivate() const;
     void setIsPrivate(bool isPrivate);

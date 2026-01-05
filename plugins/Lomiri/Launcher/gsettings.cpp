@@ -20,10 +20,12 @@
 #include "gsettings.h"
 
 #include <QVariant>
+#include <QRegularExpression>
 
 GSettings::GSettings(QObject *parent):
     QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_gSettings = new QGSettings("com.lomiri.Shell.Launcher", "/com/lomiri/shell/launcher/", this);
     connect(m_gSettings, &QGSettings::changed, this, &GSettings::onSettingsChanged);
 }
@@ -38,8 +40,8 @@ QStringList GSettings::storedApplications() const
             // convert legacy entries to new world appids
             QString appId = entry;
             // Transform "application://foobar.desktop" to "foobar"
-            appId.remove(QRegExp(QStringLiteral("^application:///")));
-            appId.remove(QRegExp(QStringLiteral(".desktop$")));
+            appId.remove(QRegularExpression(QStringLiteral("^application:///")));
+            appId.remove(QRegularExpression(QStringLiteral(".desktop$")));
             storedApps << appId;
         } else if (entry.startsWith(QLatin1String("appid://"))) {
             QString appId = entry;

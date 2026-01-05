@@ -37,6 +37,7 @@ AppDrawerModel::AppDrawerModel(QObject *parent):
     m_xdgWatcher(new XdgWatcher(this)),
     m_refreshing(false)
 {
+    qDebug()<<Q_FUNC_INFO;
     connect(&m_refreshFutureWatcher, &QFutureWatcher<ItemList>::finished,
             this,                    &AppDrawerModel::onRefreshFinished);
 

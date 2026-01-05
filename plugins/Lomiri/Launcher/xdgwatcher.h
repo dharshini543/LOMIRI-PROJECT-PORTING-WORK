@@ -27,12 +27,12 @@ class XdgWatcher: public QObject
 public:
     XdgWatcher(QObject* parent = nullptr);
 
-Q_SIGNALS:
+signals:
     void appAdded(const QString &appId);
     void appRemoved(const QString &appId);
     void appInfoChanged(const QString &appId);
 
-private Q_SLOTS:
+private slots:
     void onDirectoryChanged(const QString &path);
     void onFileChanged(const QString &path);
 

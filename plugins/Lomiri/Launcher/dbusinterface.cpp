@@ -107,7 +107,7 @@ QString DBusInterface::encodeAppId(const QString& appId)
         if ((chr >= 'a' && chr <= 'z') ||
             (chr >= 'A' && chr <= 'Z') ||
             (chr >= '0' && chr <= '9'&& i != 0)) {
-            encoded.append(chr);
+            encoded.append(QLatin1Char(chr));
         } else {
             QString hexval = QStringLiteral("_%1").arg(chr, 2, 16, QChar('0'));
             encoded.append(hexval.toUpper());

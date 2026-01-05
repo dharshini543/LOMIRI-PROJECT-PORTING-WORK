@@ -33,10 +33,10 @@ public:
     QStringList storedApplications() const;
     void setStoredApplications(const QStringList &storedApplications);
 
-Q_SIGNALS:
+signals:
     void changed();
 
-private Q_SLOTS:
+private slots:
     void onSettingsChanged(const QString &key);
 
 private:
