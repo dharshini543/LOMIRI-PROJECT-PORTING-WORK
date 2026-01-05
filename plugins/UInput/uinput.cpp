@@ -26,6 +26,7 @@
 UInput::UInput(QObject *parent) :
     QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_devName = QByteArrayLiteral("lomiri-simulated-mouse");
     m_uinput.setFileName(QStringLiteral("/dev/uinput"));
 
@@ -44,6 +45,8 @@ UInput::~UInput()
 
 void UInput::createMouse()
 {
+    qDebug()<<Q_FUNC_INFO;
+
     if (m_mouseCreated) {
         qDebug() << "Already have a virtual device. Not creating another one.";
         return;

@@ -28,5 +28,4 @@ QObject* uinputSingleton(QQmlEngine*, QJSEngine*)
 void UInputPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("UInput"));
-    qmlRegisterSingletonType<UInput>(uri, 0, 1, "UInput", uinputSingleton);
 }
