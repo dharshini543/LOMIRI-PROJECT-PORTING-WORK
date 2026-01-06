@@ -29,8 +29,6 @@
 void BackendPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("Lomiri.DownloadDaemonListener"));
-
-    qmlRegisterType<DownloadTracker>(uri, 0, 1, "DownloadTracker");
 }
 
 void BackendPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

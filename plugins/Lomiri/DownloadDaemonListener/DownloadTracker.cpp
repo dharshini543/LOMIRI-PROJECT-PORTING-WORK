@@ -25,6 +25,7 @@ DownloadTracker::DownloadTracker(QObject *parent)
     : QObject(parent)
     , m_adaptor(nullptr)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 bool DownloadTracker::isServiceReady() const
