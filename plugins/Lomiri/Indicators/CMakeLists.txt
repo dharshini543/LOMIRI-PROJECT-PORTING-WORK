@@ -1,7 +1,19 @@
-project(IndicatorsQml)
+cmake_minimum_required(VERSION 3.17)
+project(IndicatorsQml LANGUAGES CXX)
 
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Quick REQUIRED)
+set(CMAKE_AUTOMOC ON)
+
+add_definitions(-DQT_NO_KEYWORDS)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GLIB REQUIRED glib-2.0)
+pkg_check_modules(GIO REQUIRED gio-2.0)
+pkg_check_modules(QMENUMODEL REQUIRED qmenumodel)
+
+find_package(Qt6Core REQUIRED)
+find_package(Qt6Qml REQUIRED)
+find_package(Qt6Quick REQUIRED)
+find_package(Qt6DBus REQUIRED)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -18,33 +30,44 @@ include_directories(
     ${QMENUMODEL_INCLUDE_DIRS}
 )
 
-set(IndicatorsQML_SOURCES
+qt_add_qml_module(IndicatorsQml
+    URI Lomiri.Indicators
+    VERSION 0.1
+    SOURCES
+    actionrootstate.h
     actionrootstate.cpp
+    indicator.h
     indicator.cpp
     indicators.h
+    indicatorsmanager.h
     indicatorsmanager.cpp
+    indicatorsmodel.h
     indicatorsmodel.cpp
+    menucontentactivator.h
     menucontentactivator.cpp
+    modelactionrootstate.h
     modelactionrootstate.cpp
+    modelprinter.h
     modelprinter.cpp
+    plugin.h
     plugin.cpp
+    rootstateparser.h
     rootstateparser.cpp
+    sharedlomirimenumodel.h
     sharedlomirimenumodel.cpp
+    lomirimenumodelcache.h
     lomirimenumodelcache.cpp
+    lomirimenumodelstack.h
     lomirimenumodelstack.cpp
-    ${CMAKE_SOURCE_DIR}/plugins/Lomiri/Platform/platform.cpp
 )
+
 add_definitions(-DLOMIRIINDICATORS_LIBRARY)
 
-add_library(IndicatorsQml SHARED
-    ${IndicatorsQML_SOURCES}
-)
-
 target_link_libraries(IndicatorsQml
+    PRIVATE
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES}
     ${QMENUMODEL_LDFLAGS}
-    Qt5::Core Qt5::Qml Qt5::Quick Qt5::DBus
+    Qt6::Core Qt6::Qml Qt6::Quick Qt6::DBus
 )
 
-add_lomiri_plugin(Lomiri.Indicators 0.1 Lomiri/Indicators TARGETS IndicatorsQml)

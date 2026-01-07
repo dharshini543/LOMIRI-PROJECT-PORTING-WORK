@@ -32,6 +32,7 @@
 class LOMIRIINDICATORS_EXPORT IndicatorsManager : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(bool loaded READ isLoaded NOTIFY loadedChanged)
     Q_PROPERTY(QString profile READ profile WRITE setProfile NOTIFY profileChanged)
 public:

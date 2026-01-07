@@ -57,8 +57,8 @@ public:
 
     int findNextInactiveDelta(bool* finished = nullptr);
 
-    static int content_count(QQmlListProperty<MenuContentState> *prop);
-    static MenuContentState* content_at(QQmlListProperty<MenuContentState> *prop, int index);
+    static qsizetype content_count(QQmlListProperty<MenuContentState> *prop);
+    static MenuContentState* content_at(QQmlListProperty<MenuContentState> *prop, qsizetype index);
 
     bool m_running;
     int m_baseIndex;
@@ -73,6 +73,7 @@ MenuContentActivator::MenuContentActivator(QObject* parent)
     :   QObject(parent),
         d(new MenuContentActivatorPrivate(this))
 {
+    qDebug()<<Q_FUNC_INFO;
     qRegisterMetaType<QQmlListProperty<MenuContentState> > ("QQmlListProperty<MenuContentState>");
 
     setContentTimer(new ContentTimer(this));
@@ -301,14 +302,14 @@ int MenuContentActivatorPrivate::findNextInactiveDelta(bool* finished)
     return tmpDelta;
 }
 
-int MenuContentActivatorPrivate::content_count(QQmlListProperty<MenuContentState> *prop)
+qsizetype MenuContentActivatorPrivate::content_count(QQmlListProperty<MenuContentState> *prop)
 {
     MenuContentActivator *p = qobject_cast<MenuContentActivator*>(prop->object);
     // we'll create MenuContentState on demand.
     return p->count();
 }
 
-MenuContentState* MenuContentActivatorPrivate::content_at(QQmlListProperty<MenuContentState> *prop, int index)
+MenuContentState* MenuContentActivatorPrivate::content_at(QQmlListProperty<MenuContentState> *prop, qsizetype index)
 {
     MenuContentActivator *p = qobject_cast<MenuContentActivator*>(prop->object);
     MenuContentActivatorPrivate *d = p->d;

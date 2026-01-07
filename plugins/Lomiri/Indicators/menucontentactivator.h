@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QQmlListProperty>
+#include <qqmlintegration.h>
 
 
 namespace LomiriIndicators {
@@ -48,6 +49,8 @@ private:
 class LOMIRIINDICATORS_EXPORT MenuContentState : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create MenuContentState class")
     Q_PROPERTY(bool active READ isActive NOTIFY activeChanged)
 public:
     MenuContentState(bool active);
@@ -66,6 +69,7 @@ class MenuContentActivatorPrivate;
 class LOMIRIINDICATORS_EXPORT MenuContentActivator : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(int baseIndex READ baseIndex WRITE setBaseIndex NOTIFY baseIndexChanged)
     Q_PROPERTY(bool running READ isRunning WRITE setRunning NOTIFY runningChanged)
     Q_PROPERTY(int count READ count WRITE setCount NOTIFY countChanged)

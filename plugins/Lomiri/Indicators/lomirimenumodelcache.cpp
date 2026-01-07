@@ -35,6 +35,7 @@ LomiriMenuModelCache* LomiriMenuModelCache::singleton()
 LomiriMenuModelCache::LomiriMenuModelCache(QObject* parent)
     : QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 QSharedPointer<AyatanaMenuModel> LomiriMenuModelCache::model(const QByteArray& path)
@@ -61,5 +62,6 @@ QSharedPointer<AyatanaMenuModel> LomiriMenuModelCache::model(const QByteArray& p
 
 bool LomiriMenuModelCache::contains(const QByteArray& path)
 {
+    qDebug()<<Q_FUNC_INFO;
     return m_registry.contains(path);
 }

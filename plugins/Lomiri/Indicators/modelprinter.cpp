@@ -29,6 +29,7 @@ ModelPrinter::ModelPrinter(QObject *parent)
     : QObject(parent)
     , m_model(nullptr)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 void ModelPrinter::setSourceModel(AyatanaMenuModel * sourceModel)
@@ -116,7 +117,7 @@ QString ModelPrinter::getRowSring(AyatanaMenuModel* sourceModel, int row, int de
 
 QString ModelPrinter::getVariantString(const QVariant& vData) const
 {
-    if (vData.type() == QVariant::List) {
+    if (vData.metaType() == QMetaType(QMetaType::QVariantList)) {
         QStringList strList;
         for (const auto& v : vData.toList())
             strList.append(getVariantString(v));
@@ -132,7 +133,7 @@ QString ModelPrinter::getVariantString(const QString& roleName, const QVariant &
     QString str;
     QTextStream stream(&str);
 
-    if (vData.canConvert(QMetaType::QVariantMap)) {
+    if (vData.canConvert(QMetaType(QMetaType::QVariantMap))) {
         QMapIterator<QString, QVariant> iter(vData.toMap());
         while (iter.hasNext()) {
             iter.next();

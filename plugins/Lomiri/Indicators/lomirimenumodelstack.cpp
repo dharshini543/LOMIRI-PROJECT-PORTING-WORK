@@ -80,6 +80,7 @@ private:
 LomiriMenuModelStack::LomiriMenuModelStack(QObject* parent)
     : QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 LomiriMenuModelStack::~LomiriMenuModelStack()

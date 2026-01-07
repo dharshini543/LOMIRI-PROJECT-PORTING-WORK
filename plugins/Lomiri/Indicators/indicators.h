@@ -22,10 +22,13 @@
 #include "lomiriindicatorsglobal.h"
 
 #include <QObject>
+#include <qqmlintegration.h>
 
 class LOMIRIINDICATORS_EXPORT ActionState : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create ActionState class")
 public:
     enum ActionStates {
       Label           = 0x00,
@@ -41,6 +44,8 @@ public:
 class LOMIRIINDICATORS_EXPORT NetworkActionState : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create NetworkActionState class")
 public:
     enum NetworkActionStates {
       Connection      = 0x01,
@@ -54,6 +59,8 @@ public:
 class LOMIRIINDICATORS_EXPORT NetworkConnection : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create NetworkConnection class")
 public:
     enum NetworkConnectionStates {
       Initial         = 0x00,
@@ -69,6 +76,8 @@ public:
 class LOMIRIINDICATORS_EXPORT IndicatorsModelRole : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create IndicatorsModelRole class")
 public:
     enum Roles {
         Identifier = 0,
@@ -83,6 +92,8 @@ public:
 class LOMIRIINDICATORS_EXPORT FlatMenuProxyModelRole : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("Can't create FlatMenuProxyModelRole class")
 public:
     enum Roles {
         Action  = Qt::DisplayRole + 1,

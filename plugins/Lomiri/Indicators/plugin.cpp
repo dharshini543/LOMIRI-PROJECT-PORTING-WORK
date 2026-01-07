@@ -24,11 +24,6 @@
 #include "plugin.h"
 
 // local
-#include "actionrootstate.h"
-#include "indicators.h"
-#include "indicatorsmanager.h"
-#include "indicatorsmodel.h"
-#include "menucontentactivator.h"
 #include "modelactionrootstate.h"
 #include "modelprinter.h"
 #include "sharedlomirimenumodel.h"
@@ -46,22 +41,4 @@ static QObject* menuModelCacheSingleton(QQmlEngine* engine, QJSEngine* scriptEng
 void IndicatorsPlugin::registerTypes(const char *uri)
 {
     qRegisterMetaType<AyatanaMenuModel*>("AyatanaMenuModel*");
-
-    qmlRegisterType<IndicatorsManager>(uri, 0, 1, "IndicatorsManager");
-    qmlRegisterType<IndicatorsModel>(uri, 0, 1, "IndicatorsModel");
-    qmlRegisterType<MenuContentActivator>(uri, 0, 1, "MenuContentActivator");
-    qmlRegisterType<LomiriMenuModelStack>(uri, 0, 1, "LomiriMenuModelStack");
-    qmlRegisterType<ModelActionRootState>(uri, 0, 1, "ModelActionRootState");
-    qmlRegisterType<ActionRootState>(uri, 0, 1, "ActionRootState");
-    qmlRegisterType<ModelPrinter>(uri, 0, 1, "ModelPrinter");
-    qmlRegisterType<SharedLomiriMenuModel>(uri, 0, 1, "SharedLomiriMenuModel");
-
-    qmlRegisterSingletonType<LomiriMenuModelCache>(uri, 0, 1, "LomiriMenuModelCache", menuModelCacheSingleton);
-
-    qmlRegisterUncreatableType<MenuContentState>(uri, 0, 1, "MenuContentState", QStringLiteral("Can't create MenuContentState class"));
-    qmlRegisterUncreatableType<ActionState>(uri, 0, 1, "ActionState", QStringLiteral("Can't create ActionState class"));
-    qmlRegisterUncreatableType<NetworkActionState>(uri, 0, 1, "NetworkActionState", QStringLiteral("Can't create NetworkActionState class"));
-    qmlRegisterUncreatableType<NetworkConnection>(uri, 0, 1, "NetworkConnection", QStringLiteral("Can't create NetworkConnection class"));
-    qmlRegisterUncreatableType<IndicatorsModelRole>(uri, 0, 1, "IndicatorsModelRole", QStringLiteral("Can't create IndicatorsModelRole class"));
-    qmlRegisterUncreatableType<FlatMenuProxyModelRole>(uri, 0, 1, "FlatMenuProxyModelRole", QStringLiteral("Can't create FlatMenuProxyModelRole class"));
 }

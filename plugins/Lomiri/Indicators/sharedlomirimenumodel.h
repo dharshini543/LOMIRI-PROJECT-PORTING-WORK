@@ -23,12 +23,14 @@
 #include <QObject>
 #include <QSharedPointer>
 #include <QVariantMap>
+#include <qqmlintegration.h>
 
 class AyatanaMenuModel;
 
 class LOMIRIINDICATORS_EXPORT SharedLomiriMenuModel : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(QByteArray busName READ busName WRITE setBusName NOTIFY busNameChanged)
     Q_PROPERTY(QByteArray menuObjectPath READ menuObjectPath WRITE setMenuObjectPath NOTIFY menuObjectPathChanged)
     Q_PROPERTY(QVariantMap actions READ actions WRITE setActions NOTIFY actionsChanged)

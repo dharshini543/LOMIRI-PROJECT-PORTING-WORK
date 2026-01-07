@@ -23,12 +23,14 @@
 #include "lomiriindicatorsglobal.h"
 
 #include "rootstateparser.h"
+#include <qqmlintegration.h>
 
 class AyatanaMenuModel;
 
 class LOMIRIINDICATORS_EXPORT ModelActionRootState : public RootStateObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(AyatanaMenuModel* menu READ menu WRITE setMenu NOTIFY menuChanged)
     Q_PROPERTY(QString secondaryAction READ secondaryAction NOTIFY secondaryActionChanged)
     Q_PROPERTY(QString scrollAction READ scrollAction NOTIFY scrollActionChanged)

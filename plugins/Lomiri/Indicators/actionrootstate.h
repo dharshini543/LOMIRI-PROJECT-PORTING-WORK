@@ -20,12 +20,15 @@
 #include "lomiriindicatorsglobal.h"
 
 #include "rootstateparser.h"
+#include <qqmlintegration.h>
 
 class QDBusActionGroup;
+Q_DECLARE_OPAQUE_POINTER(QDBusActionGroup*)
 
 class LOMIRIINDICATORS_EXPORT ActionRootState : public RootStateObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(QDBusActionGroup* actionGroup READ actionGroup WRITE setActionGroup NOTIFY actionGroupChanged)
     Q_PROPERTY(QString actionName READ actionName WRITE setActionName NOTIFY actionNameChanged)
 

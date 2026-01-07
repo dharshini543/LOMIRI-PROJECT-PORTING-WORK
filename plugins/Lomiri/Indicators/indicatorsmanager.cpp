@@ -19,7 +19,7 @@
 #include <QSettings>
 #include <QDebug>
 
-#include <paths.h>
+#include <../../../include/paths.h.in>
 
 
 class IndicatorsManager::IndicatorData
@@ -44,6 +44,7 @@ IndicatorsManager::IndicatorsManager(QObject* parent)
     , m_loaded(false)
     , m_profile(QStringLiteral("phone"))
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 IndicatorsManager::~IndicatorsManager()

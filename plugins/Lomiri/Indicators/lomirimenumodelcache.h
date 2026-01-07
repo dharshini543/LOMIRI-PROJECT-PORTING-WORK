@@ -26,12 +26,15 @@
 #include <QHash>
 #include <QPointer>
 #include <QSharedPointer>
+#include <qqmlintegration.h>
 
 class AyatanaMenuModel;
 
 class LOMIRIINDICATORS_EXPORT LomiriMenuModelCache : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 public:
     LomiriMenuModelCache(QObject*parent=nullptr);
 

@@ -24,9 +24,12 @@
 
 #include <QObject>
 #include <QList>
+#include <qqmlintegration.h>
 
 class LomiriMenuModelEntry;
 class AyatanaMenuModel;
+
+Q_DECLARE_OPAQUE_POINTER(AyatanaMenuModel*)
 
 // A LIFO queue for storing the current submenu of an AyatanaMenuModel.
 // The root menu model is set as the head, and each subsiquent submenu that is
@@ -36,6 +39,7 @@ class AyatanaMenuModel;
 class LOMIRIINDICATORS_EXPORT LomiriMenuModelStack : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(AyatanaMenuModel* head READ head WRITE setHead NOTIFY headChanged)
     Q_PROPERTY(AyatanaMenuModel* tail READ tail NOTIFY tailChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)

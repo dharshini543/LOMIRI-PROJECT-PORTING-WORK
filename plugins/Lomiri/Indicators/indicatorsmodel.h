@@ -32,6 +32,7 @@ class IndicatorsManager;
 class LOMIRIINDICATORS_EXPORT IndicatorsModel : public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QString profile READ profile WRITE setProfile NOTIFY profileChanged)
 

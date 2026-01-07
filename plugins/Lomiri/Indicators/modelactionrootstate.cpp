@@ -17,6 +17,7 @@
  *      Nick Dedekind <nick.dedekind@canonical.com>
  */
 
+
 #include "modelactionrootstate.h"
 #include "indicators.h"
 
@@ -34,6 +35,7 @@ ModelActionRootState::ModelActionRootState(QObject *parent)
       m_menu(nullptr)
     , m_reentryGuard(false)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 ModelActionRootState::~ModelActionRootState()

@@ -23,6 +23,7 @@ ActionRootState::ActionRootState(QObject *parent)
     : RootStateObject(parent)
     , m_actionGroup(nullptr)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 QDBusActionGroup *ActionRootState::actionGroup() const

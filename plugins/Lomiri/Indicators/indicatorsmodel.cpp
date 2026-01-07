@@ -53,6 +53,7 @@
 IndicatorsModel::IndicatorsModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_manager = new IndicatorsManager(this);
     QObject::connect(m_manager, &IndicatorsManager::indicatorLoaded, this, &IndicatorsModel::onIndicatorLoaded);
     QObject::connect(m_manager, &IndicatorsManager::indicatorAboutToBeUnloaded, this, &IndicatorsModel::onIndicatorAboutToBeUnloaded);

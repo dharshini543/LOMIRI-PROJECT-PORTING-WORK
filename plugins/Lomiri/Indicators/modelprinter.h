@@ -21,6 +21,7 @@
 #define MODELPRINTER_H
 
 #include <QSortFilterProxyModel>
+#include <qqmlintegration.h>
 class AyatanaMenuModel;
 
 // This class acts as a namespace only, with the addition that its enums
@@ -28,7 +29,7 @@ class AyatanaMenuModel;
 class ModelPrinter : public QObject
 {
     Q_OBJECT
-
+    QML_ELEMENT
     Q_PROPERTY(AyatanaMenuModel* model READ sourceModel WRITE setSourceModel NOTIFY modelChanged)
     Q_PROPERTY(QString text READ text NOTIFY textChanged)
 public:

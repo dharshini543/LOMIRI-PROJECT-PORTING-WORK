@@ -23,6 +23,7 @@
 SharedLomiriMenuModel::SharedLomiriMenuModel(QObject* parent)
     : QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 QByteArray SharedLomiriMenuModel::busName() const
