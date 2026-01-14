@@ -23,7 +23,7 @@
 
 // local
 #include "qsortfilterproxymodelqml.h"
-#include "system.h"
+#include "../System.h"
 
 static QObject *system_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -35,7 +35,5 @@ static QObject *system_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 void UtilsPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("Lomiri.SystemSettings.Wizard.Utils"));
-    qmlRegisterType<QAbstractItemModel>();
-    qmlRegisterType<QSortFilterProxyModelQML>(uri, 0, 1, "SortFilterProxyModel");
-    qmlRegisterSingletonType<System>(uri, 0, 1, "System", system_provider);
+    qmlRegisterAnonymousType<QAbstractItemModel>(uri , 1);
 }
