@@ -35,6 +35,7 @@
 System::System()
     : QObject()
 {
+    qDebug()<<Q_FUNC_INFO;
     // Register the argument needed for UpdateActivationEnvironment below
     qDBusRegisterMetaType<QMap<QString,QString>>();
 

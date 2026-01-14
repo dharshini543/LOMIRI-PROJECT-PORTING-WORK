@@ -283,6 +283,7 @@ QString LocaleAttached::mccToCountryCode(int mcc) const
 LocalePlugin::LocalePlugin(QObject* parent)
     : QObject(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
 }
 
 LocaleAttached* LocalePlugin::qmlAttachedProperties(QObject* parent)

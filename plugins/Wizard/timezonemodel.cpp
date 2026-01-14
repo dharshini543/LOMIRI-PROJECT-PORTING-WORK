@@ -27,6 +27,7 @@ TimeZoneLocationModel::TimeZoneLocationModel(QObject *parent):
     m_listUpdating(false),
     m_cancellable(nullptr)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_roleNames[Qt::DisplayRole] = "displayName";
     m_roleNames[TimeZoneRole] = "timeZone";
     m_roleNames[CityRole] = "city";

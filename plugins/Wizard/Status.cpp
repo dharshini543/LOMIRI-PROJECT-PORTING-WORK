@@ -21,6 +21,7 @@
 
 Status::Status()
 {
+    qDebug()<<Q_FUNC_INFO;
     initNM();
     initUPower();
 }

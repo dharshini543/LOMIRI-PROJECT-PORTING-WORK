@@ -22,10 +22,13 @@
 #include <QVersionNumber>
 #include <QObject>
 #include <QString>
+#include <qqmlintegration.h>
 
 class System : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_PROPERTY(bool wizardEnabled READ wizardEnabled WRITE setWizardEnabled NOTIFY wizardEnabledChanged)
     Q_PROPERTY(QString version READ version NOTIFY versionChanged)
     Q_PROPERTY(bool isUpdate READ isUpdate NOTIFY isUpdateChanged)

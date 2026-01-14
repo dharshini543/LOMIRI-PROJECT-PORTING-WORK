@@ -24,6 +24,7 @@
 Changelog::Changelog()
     : QObject()
 {
+    qDebug()<<Q_FUNC_INFO;
     readChangelog();
     if(QFile::exists(changelogPath()))
         m_fsWatcher.addPath(changelogPath());

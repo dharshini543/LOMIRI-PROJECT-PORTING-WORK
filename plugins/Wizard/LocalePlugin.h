@@ -47,6 +47,7 @@ public:
 class LocalePlugin: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 public:
     explicit LocalePlugin(QObject *parent = 0);
 

@@ -18,6 +18,7 @@
 #define KEYBOARDLAYOUTSMODEL_H
 
 #include <QAbstractListModel>
+#include <qqmlintegration.h>
 
 struct KeyboardLayoutInfo {
     QString id;
@@ -28,6 +29,7 @@ struct KeyboardLayoutInfo {
 class KeyboardLayoutsModel: public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
 

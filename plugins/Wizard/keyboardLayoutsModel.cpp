@@ -28,6 +28,7 @@ Q_DECLARE_METATYPE(StringMapList)
 KeyboardLayoutsModel::KeyboardLayoutsModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_roleNames = {
         {LayoutIdRole, "layoutId"},
         {DisplayNameRole, "displayName"},

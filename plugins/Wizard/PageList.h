@@ -20,10 +20,12 @@
 #include <QMap>
 #include <QObject>
 #include <QString>
+#include <qqmlintegration.h>
 
 class PageList : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(int index READ index NOTIFY indexChanged)
     Q_PROPERTY(int numPages READ numPages NOTIFY numPagesChanged)
 

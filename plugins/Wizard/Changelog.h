@@ -21,10 +21,13 @@
 #include <QFileSystemWatcher>
 #include <QObject>
 #include <QString>
+#include <qqmlintegration.h>
 
 class Changelog : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_PROPERTY(QString text READ text NOTIFY textChanged)
 
 public:

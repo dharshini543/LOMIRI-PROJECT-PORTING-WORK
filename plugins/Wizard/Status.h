@@ -20,10 +20,13 @@
 #include <QObject>
 #include <QString>
 #include <QDBusInterface>
+#include <qqmlintegration.h>
 
 class Status: public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_PROPERTY(bool online READ online NOTIFY onlineChanged)
     Q_PROPERTY(QString networkIcon READ networkIcon NOTIFY networkIconChanged)
     Q_PROPERTY(QString batteryIcon READ batteryIcon NOTIFY batteryIconChanged)

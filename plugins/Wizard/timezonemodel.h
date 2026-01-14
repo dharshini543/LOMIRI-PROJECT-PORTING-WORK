@@ -20,10 +20,12 @@
 #include <geonames.h>
 #include <glib.h>
 #include <QAbstractListModel>
+#include <qqmlintegration.h>
 
 class TimeZoneLocationModel: public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(bool listUpdating READ listUpdating NOTIFY listUpdatingChanged)
     Q_PROPERTY(QString filter READ filter WRITE setFilter NOTIFY filterChanged)
     Q_PROPERTY(QString country READ country WRITE setCountry NOTIFY countryChanged)

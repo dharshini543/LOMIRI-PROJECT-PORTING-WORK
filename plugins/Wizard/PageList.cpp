@@ -30,7 +30,7 @@
  */
 
 #include "PageList.h"
-#include <paths.h>
+#include "paths.h.in"
 #include <QDir>
 #include <QSet>
 #include <QStandardPaths>
@@ -41,6 +41,7 @@ PageList::PageList(QObject *parent)
       m_index(-1),
       m_pages()
 {
+    qDebug()<<Q_FUNC_INFO;
     const QString qmlSuffix = QStringLiteral(".qml");
     const QString disabledSuffix = QStringLiteral(".disabled");
     QSet<QString> disabledPages;
