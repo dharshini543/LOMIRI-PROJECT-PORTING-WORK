@@ -89,6 +89,7 @@ void UInput::createMouse()
 
 void UInput::removeMouse()
 {
+    qDebug()<<Q_FUNC_INFO;
     if (!m_mouseCreated) {
         return;
     }
@@ -110,6 +111,7 @@ void UInput::removeMouse()
 
 void UInput::moveMouse(int dx, int dy)
 {
+    qDebug()<<Q_FUNC_INFO;
     struct input_event event;
     memset(&event, 0, sizeof(event));
     clock_gettime(CLOCK_MONOTONIC, (timespec*)&event.time);
@@ -130,16 +132,20 @@ void UInput::moveMouse(int dx, int dy)
 
 void UInput::pressMouse(Button button)
 {
+    qDebug()<<Q_FUNC_INFO;
     injectMouse(button, 1);
 }
 
 void UInput::releaseMouse(Button button)
 {
+    qDebug()<<Q_FUNC_INFO;
     injectMouse(button, 0);
 }
 
 void UInput::scrollMouse(int dh, int dv)
 {
+    qDebug()<<Q_FUNC_INFO;
+
     struct input_event event;
     memset(&event, 0, sizeof(event));
     clock_gettime(CLOCK_MONOTONIC, (timespec*)&event.time);

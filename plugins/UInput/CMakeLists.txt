@@ -9,8 +9,6 @@ qt_add_qml_module(UInput-qml
     URI UInput
     VERSION 0.1
     SOURCES
-    plugin.h
-    plugin.cpp
     uinput.h
     uinput.cpp)
 
