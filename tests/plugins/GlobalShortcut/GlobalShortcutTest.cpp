@@ -32,7 +32,21 @@ private Q_SLOTS:
     void initTestCase()
     {
         m_view = new QQuickView();
+        
+        // Add QML2_IMPORT_PATH to engine for proper module resolution
+        const QString importPath = qgetenv("QML2_IMPORT_PATH");
+        if (!importPath.isEmpty()) {
+            m_view->engine()->addImportPath(importPath);
+        }
+        
         m_view->setSource(QUrl::fromLocalFile(testDataDir() + "/" TEST_DIR "/shortcut.qml"));
+        
+        // Check if QML loaded successfully
+        if (!m_view->rootObject()) {
+            qWarning() << "Failed to load QML:" << m_view->errors();
+            QFAIL("QML file failed to load");
+        }
+        
         m_shortcut = dynamic_cast<GlobalShortcut*>(m_view->rootObject()->property("shortcut").value<QObject*>());
         QVERIFY(m_shortcut);
         m_inactiveShortcut = dynamic_cast<GlobalShortcut*>(m_view->rootObject()->property("inactiveShortcut").value<QObject*>());

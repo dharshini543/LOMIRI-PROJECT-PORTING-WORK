@@ -3,19 +3,15 @@ project(GlobalShortcut-qml LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6Quick REQUIRED)
-find_package(Qt6Gui REQUIRED)
+find_package(Qt6 COMPONENTS Quick Gui REQUIRED)
+
+file(GLOB GLOBALSHORTCUT_FILES "*.h" "*.cpp")
 
 qt_add_qml_module(GlobalShortcut-qml
     URI GlobalShortcut
     VERSION 1.0
     SOURCES
-    globalshortcut.h
-    globalshortcut.cpp
-    globalshortcutregistry.h
-    globalshortcutregistry.cpp
-    plugin.h
-    plugin.cpp
+    ${GLOBALSHORTCUT_FILES}
 )
 
 target_link_libraries(GlobalShortcut-qml PRIVATE Qt6::Quick Qt6::Gui)
