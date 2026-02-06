@@ -20,11 +20,17 @@
 DBusApplicationMenuRegistry::DBusApplicationMenuRegistry(QObject *parent)
     : ApplicationMenuRegistry(parent)
 {
+    qDebug()<<Q_FUNC_INFO;
     new MenuRegistrarAdaptor(this);
 
     QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerObject("/com/lomiri/MenuRegistrar", this)) {
-        qCWarning(LOMIRI_APPMENU) << "Unable to register DBus object /com/lomiri/MenuRegistrar";
+    // if (!connection.registerObject("/com/lomiri/MenuRegistrar", this)) {
+    //     qCWarning(LOMIRI_APPMENU) << "Unable to register DBus object /com/lomiri/MenuRegistrar";
+    // }
+    if (!connection.objectRegisteredAt("/com/lomiri/MenuRegistrar")) {
+        if (!connection.registerObject("/com/lomiri/MenuRegistrar", this)) {
+            qCWarning(LOMIRI_APPMENU) << "Unable to register DBus object /com/lomiri/MenuRegistrar";
+        }
     }
     if (!connection.registerService("com.lomiri.MenuRegistrar")) {
         qCWarning(LOMIRI_APPMENU) << "Unable to register DBus service com.lomiri.MenuRegistrar";
@@ -33,12 +39,15 @@ DBusApplicationMenuRegistry::DBusApplicationMenuRegistry(QObject *parent)
 
 DBusApplicationMenuRegistry::~DBusApplicationMenuRegistry()
 {
+    qDebug()<<Q_FUNC_INFO;
+
     QDBusConnection connection = QDBusConnection::sessionBus();
     connection.unregisterObject("/com/lomiri/MenuRegistrar");
 }
 
 ApplicationMenuRegistry *DBusApplicationMenuRegistry::instance()
 {
+    qDebug()<<Q_FUNC_INFO;
     static ApplicationMenuRegistry* reg(new DBusApplicationMenuRegistry());
     return reg;
 }

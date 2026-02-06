@@ -1,16 +1,16 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.24)
 project(ApplicationMenu-qml LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6DBus REQUIRED)
-find_package(Qt6Qml REQUIRED)
-find_package(Qt6Quick REQUIRED)
+find_package(Qt6 COMPONENTS DBus Qml Quick REQUIRED)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
 )
+
+file(GLOB APPLICATION_MENU_FILES "*.h" "*.cpp")
 
 qt_add_dbus_adaptor(applicationMenu_SRCS
     com.lomiri.MenuRegistrar.xml
@@ -21,12 +21,7 @@ qt_add_qml_module(ApplicationMenu-qml
     URI Lomiri.ApplicationMenu
     VERSION 0.1
     SOURCES
-    applicationmenuregistry.h
-    applicationmenuregistry.cpp
-    dbusapplicationmenuregistry.h
-    dbusapplicationmenuregistry.cpp
-    plugin.h
-    plugin.cpp
+    ${APPLICATION_MENU_FILES}
     ${applicationMenu_SRCS}
 )
 

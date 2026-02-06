@@ -27,9 +27,9 @@ class DBusApplicationMenuRegistry : public ApplicationMenuRegistry,
     QML_SINGLETON
 public:
     ~DBusApplicationMenuRegistry();
-    static ApplicationMenuRegistry* instance();
+    Q_INVOKABLE static ApplicationMenuRegistry* instance();
 
-protected:
+// protected:
     explicit DBusApplicationMenuRegistry(QObject *parent = 0);
 };
 
