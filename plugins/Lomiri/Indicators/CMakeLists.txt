@@ -27,7 +27,7 @@ include_directories(
 include_directories(
     SYSTEM
     ${GIO_INCLUDE_DIRS}
-    ${QMENUMODEL_INCLUDE_DIRS}
+    /usr/include/qmenumodel
 )
 
 qt_add_qml_module(IndicatorsQml
@@ -67,7 +67,7 @@ target_link_libraries(IndicatorsQml
     PRIVATE
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES}
-    ${QMENUMODEL_LDFLAGS}
+    qmenumodel
     Qt6::Core Qt6::Qml Qt6::Quick Qt6::DBus
 )
 
