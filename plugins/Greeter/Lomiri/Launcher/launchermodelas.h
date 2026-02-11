@@ -17,18 +17,29 @@
 #ifndef LAUNCHERMODEL_H
 #define LAUNCHERMODEL_H
 
-#include <lomiri/shell/launcher/LauncherModelInterface.h>
-#include <lomiri/shell/application/ApplicationManagerInterface.h>
-
 #include <QAbstractListModel>
 #include <qqmlintegration.h>
 
+#include <lomiri/shell/launcher/LauncherModelInterface.h>
+#include <lomiri/shell/application/ApplicationManagerInterface.h>
+
 class LauncherItem;
-class GSettings;
 class AccountsServiceDBusAdaptor;
+class GSettings;
 
 using namespace lomiri::shell::launcher;
 using namespace lomiri::shell::application;
+
+// Forward declare and mark as opaque to avoid linking against MirSurfaceListInterface
+namespace lomiri {
+namespace shell {
+namespace application {
+class MirSurfaceListInterface;
+}
+}
+}
+
+Q_DECLARE_OPAQUE_POINTER(lomiri::shell::application::MirSurfaceListInterface*)
 
 class LauncherModel: public LauncherModelInterface
 {

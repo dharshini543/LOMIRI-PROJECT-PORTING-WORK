@@ -23,20 +23,20 @@ include_directories(
     ${liblomiri-private_SOURCE_DIR}
 )
 
+# Glob local source files
+file(GLOB LAUNCHER_SOURCES
+    "*.h"
+    "*.cpp"
+)
+
+# Remove files that shouldn't be included
+list(FILTER LAUNCHER_SOURCES EXCLUDE REGEX ".*_autogen.*")
+
 qt_add_qml_module(LomiriLauncherAS-qml
     URI Lomiri.Launcher
     VERSION 0.1
     SOURCES
-    plugin.h
-    plugin.cpp
-    launchermodelas.h
-    launchermodelas.cpp
-    launcheritem.h
-    launcheritem.cpp
-    quicklistmodel.h
-    quicklistmodel.cpp
-    quicklistentry.h
-    quicklistentry.cpp
+    ${LAUNCHER_SOURCES}
     ../../../AccountsService/AccountsServiceDBusAdaptor.cpp
     ${APPLICATION_API_INCLUDEDIR}/lomiri/shell/application/ApplicationManagerInterface.h
     ${LAUNCHER_API_INCLUDEDIR}/lomiri/shell/launcher/LauncherItemInterface.h
