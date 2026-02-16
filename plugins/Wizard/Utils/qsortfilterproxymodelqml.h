@@ -22,6 +22,7 @@
 class QSortFilterProxyModelQML : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(QAbstractItemModel* model READ sourceModel WRITE setModel NOTIFY modelChanged)
     Q_PROPERTY(int totalCount READ totalCount NOTIFY totalCountChanged)

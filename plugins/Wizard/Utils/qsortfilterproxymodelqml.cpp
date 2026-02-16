@@ -19,6 +19,7 @@
 
 // Qt
 #include <QDebug>
+#include <QRegularExpression>
 
 QSortFilterProxyModelQML::QSortFilterProxyModelQML(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -127,7 +128,7 @@ QSortFilterProxyModelQML::filterAcceptsRow(int sourceRow,
                                            const QModelIndex &sourceParent) const
 {
     // If there's no regexp set, always accept all rows indepenently of the invertMatch setting
-    if (filterRegExp().isEmpty()) {
+    if (filterRegularExpression().pattern().isEmpty()) {
         return true;
     }
 
