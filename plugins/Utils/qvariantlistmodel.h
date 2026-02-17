@@ -66,6 +66,8 @@ public:
     QVariantList variantList() const;
     void setVariantList(const QVariantList &list);
 
+    QHash<int, QByteArray> roleNames() const override;
+
 private:
     QVariantList lst;
 };

@@ -18,6 +18,7 @@
 
 #include <QTest>
 #include <QSignalSpy>
+#include <QRandomGenerator>
 
 
 namespace LomiriUtil {
@@ -29,7 +30,7 @@ public:
 
     void start() override { m_msecsSinceReference = msecsSinceEpoch; m_valid = true; }
     qint64 msecsSinceReference() const override { return m_msecsSinceReference; }
-    qint64 elapsed() const override { return m_valid ? msecsSinceEpoch - m_msecsSinceReference : qrand(); }
+    qint64 elapsed() const override { return m_valid ? msecsSinceEpoch - m_msecsSinceReference : QRandomGenerator::global()->bounded(32767); }
 
 private:
     qint64 m_msecsSinceReference{0};

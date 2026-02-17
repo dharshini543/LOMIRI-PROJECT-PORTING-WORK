@@ -28,6 +28,7 @@ QLimitProxyModelQML::QLimitProxyModelQML(QObject *parent)
     , m_dataChangedBegin(-1)
     , m_dataChangedEnd(-1)
 {
+    qDebug()<<Q_FUNC_INFO;
     connect(this, &QLimitProxyModelQML::modelReset, this, &QLimitProxyModelQML::countChanged);
     connect(this, &QLimitProxyModelQML::rowsInserted, this, &QLimitProxyModelQML::countChanged);
     connect(this, &QLimitProxyModelQML::rowsRemoved, this, &QLimitProxyModelQML::countChanged);

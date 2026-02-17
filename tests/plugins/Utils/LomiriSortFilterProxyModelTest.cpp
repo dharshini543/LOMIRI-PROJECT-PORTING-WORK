@@ -198,19 +198,19 @@ private Q_SLOTS:
 
 
         // Test non-anchored regexp with invertMatch active
-        proxy.setFilterRegExp("foobar");
+        proxy.setFilterRegularExpression("foobar");
         QCOMPARE(proxy.rowCount(), 1);
         QCOMPARE(proxy.index(0, 0).data().toString(), rows.last());
 
         // Test anchored regexp with invertMatch active
-        proxy.setFilterRegExp("^foobar$");
+        proxy.setFilterRegularExpression("^foobar$");
         QCOMPARE(proxy.rowCount(), 3);
         QCOMPARE(proxy.index(0, 0).data().toString(), rows.at(0));
         QCOMPARE(proxy.index(1, 0).data().toString(), rows.at(2));
         QCOMPARE(proxy.index(2, 0).data().toString(), rows.at(3));
 
         // Test regexp with OR and invertMatch active
-        proxy.setFilterRegExp("foobar|hello");
+        proxy.setFilterRegularExpression("foobar|hello");
         QCOMPARE(proxy.count(), 0);
     }
 
@@ -240,7 +240,7 @@ private Q_SLOTS:
         model.appendRows(rows);
 
         proxy.setInvertMatch(true);
-        proxy.setFilterRegExp("^foobar$");
+        proxy.setFilterRegularExpression("^foobar$");
 
         ModelTest t1(&proxy);
     }

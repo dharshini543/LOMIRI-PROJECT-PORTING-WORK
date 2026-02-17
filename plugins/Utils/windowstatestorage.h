@@ -21,6 +21,7 @@
 #include <QMutex>
 #include <QFuture>
 #include <QThread>
+#include <QRect>
 
 // lomiri-api
 #include <lomiri/shell/application/Mir.h>

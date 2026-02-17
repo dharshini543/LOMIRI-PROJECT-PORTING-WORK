@@ -19,6 +19,9 @@
 
 #include <QSortFilterProxyModel>
 
+#include <lomiri/shell/application/ApplicationManagerInterface.h>
+#include <lomiri/shell/application/MirSurfaceListInterface.h>
+
 namespace lomiri {
 namespace shell {
 namespace application {

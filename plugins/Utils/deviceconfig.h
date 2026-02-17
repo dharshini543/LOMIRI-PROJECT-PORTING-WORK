@@ -37,7 +37,7 @@ class DeviceConfig: public QObject
 
 public:
     DeviceConfig(QObject *parent = nullptr);
-    ~DeviceConfig() = 0;
+    ~DeviceConfig();
 
     QString name() const;
 

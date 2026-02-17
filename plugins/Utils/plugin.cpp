@@ -74,7 +74,7 @@ void UtilsPlugin::registerTypes(const char *uri)
 #else
     qmlRegisterType<QAbstractItemModel>();
 #endif
-    qmlRegisterType<QLimitProxyModelQML>(uri, 0, 1, "LimitProxyModel");
+    // qmlRegisterType<QLimitProxyModelQML>(uri, 0, 1, "LimitProxyModel");
     qmlRegisterType<LomiriSortFilterProxyModelQML>(uri, 0, 1, "LomiriSortFilterProxyModel");
     qmlRegisterType<LomiriMenuModelPaths>(uri, 0, 1, "LomiriMenuModelPaths");
     qmlRegisterType<WindowInputFilter>(uri, 0, 1, "WindowInputFilter");

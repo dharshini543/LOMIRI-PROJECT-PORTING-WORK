@@ -32,7 +32,7 @@ const QDBusArgument &operator>>(const QDBusArgument &arg, QVariantMap &map)
         arg.beginMapEntry();
 
         arg >> key >> value;
-        map.insertMulti(key, parseVariantData(value)); // re-parse for qdbusargument
+        map.insert(key, parseVariantData(value)); // re-parse for qdbusargument
 
         arg.endMapEntry();
     }

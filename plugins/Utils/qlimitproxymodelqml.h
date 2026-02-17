@@ -22,6 +22,7 @@
 class QLimitProxyModelQML : public QIdentityProxyModel
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(QAbstractItemModel* model READ sourceModel WRITE setModel NOTIFY modelChanged)
     Q_PROPERTY(int limit READ limit WRITE setLimit NOTIFY limitChanged)
