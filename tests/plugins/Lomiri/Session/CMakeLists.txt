@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(SessionBroadcastTests)
+project(LomiriSessionTests)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -9,9 +9,7 @@ pkg_check_modules(GLIB REQUIRED glib-2.0)
 
 find_program(QDBUSXML2CPP_EXECUTABLE qdbusxml2cpp REQUIRED)
 
-link_libraries(
-    ${GLIB_LIBRARIES}
-)
+link_libraries(${GLIB_LIBRARIES})
 
 macro(make_dbus_class NAME INTERFACE)
     if(${CMAKE_CURRENT_SOURCE_DIR}/interfaces.xml IS_NEWER_THAN ${CMAKE_CURRENT_BINARY_DIR}/${NAME}Adaptor.h)
@@ -45,21 +43,17 @@ add_executable(LightDMServer
     LogindServer.cpp
     server.cpp
 )
-target_link_libraries(LightDMServer Qt6::Core Qt6::DBus)
+target_link_libraries(LightDMServer Qt6::Core Qt6::DBus Qt6::Qml)
 install(TARGETS LightDMServer
     DESTINATION "${SHELL_PRIVATE_LIBEXECDIR}/tests/plugins/Lomiri/Session"
-    )
+)
 
 ### Preload
-add_library(SessionBackendTestPreload SHARED
-    preload.c
-)
-target_link_libraries(SessionBackendTestPreload
-    ${GLIB_LIBRARIES}
-    )
+add_library(SessionBackendTestPreload SHARED preload.c)
+target_link_libraries(SessionBackendTestPreload ${GLIB_LIBRARIES})
 install(TARGETS SessionBackendTestPreload
     DESTINATION "${SHELL_PRIVATE_LIBEXECDIR}/tests/plugins/Lomiri/Session"
-    )
+)
 
 ### SessionBackendTest
 add_executable(sessionbackendtestExec
@@ -70,18 +64,19 @@ add_executable(sessionbackendtestExec
 target_link_libraries(sessionbackendtestExec
     lomiri-private
     ${GLIB_LIBRARIES}
-    )
-target_link_libraries(sessionbackendtestExec Qt6::Test Qt6::Core Qt6::Qml Qt6::DBus)
+    Qt6::Test Qt6::Core Qt6::Qml Qt6::DBus
+)
 install(TARGETS sessionbackendtestExec
     DESTINATION "${SHELL_PRIVATE_LIBEXECDIR}/tests/plugins/Lomiri/Session"
 )
 
-# Use add_lomiri_unittest when building from root project
-# Otherwise fallback to add_test for standalone builds
+### Tests
 if(COMMAND add_lomiri_unittest)
+    # When building from root project, use add_lomiri_unittest with dbus-test-runner
     add_lomiri_unittest(SessionBackend dbus-test-runner
         ENVIRONMENT LD_PRELOAD=$<TARGET_FILE:SessionBackendTestPreload>
                     XDG_SESSION_PATH=/session XDG_SESSION_ID=2
+                    TEST_USER=testuser TEST_NOPASSWD_USERS=""
         ARG_PREFIX "--parameter"
         ARGS
             --task $<TARGET_FILE:LightDMServer>
@@ -92,14 +87,12 @@ if(COMMAND add_lomiri_unittest)
             --wait-for org.freedesktop.DisplayManager
     )
 else()
-    set(TEST_ENV "QML2_IMPORT_PATH=${CMAKE_CURRENT_SOURCE_DIR}/../../../../qml:${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugins")
-    set(TEST_ENV "${TEST_ENV} LOMIRI_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/../../../../")
-    set(TEST_ENV "${TEST_ENV} LD_PRELOAD=$<TARGET_FILE:SessionBackendTestPreload>")
-    set(TEST_ENV "${TEST_ENV} XDG_SESSION_PATH=/session XDG_SESSION_ID=2")
-
+    # Standalone build: use dbus-test-runner directly
+    find_program(DBUS_TEST_RUNNER dbus-test-runner REQUIRED)
+    
     enable_testing()
     add_test(NAME SessionBackendTest
-        COMMAND bash -c "${TEST_ENV} $<TARGET_FILE:LightDMServer> & sleep 1 && ${TEST_ENV} $<TARGET_FILE:sessionbackendtestExec> ; pkill -f LightDMServer"
+        COMMAND bash -c "TEST_USER=testuser TEST_NOPASSWD_USERS='' QML2_IMPORT_PATH=${CMAKE_CURRENT_SOURCE_DIR}/../../../../qml:${CMAKE_CURRENT_SOURCE_DIR}/../../../../plugins LOMIRI_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/../../../../ LD_PRELOAD=$<TARGET_FILE:SessionBackendTestPreload> XDG_SESSION_PATH=/session XDG_SESSION_ID=2 ${DBUS_TEST_RUNNER} --task $<TARGET_FILE:LightDMServer> --task-name server --ignore-return --task $<TARGET_FILE:sessionbackendtestExec> --task-name client --wait-for org.freedesktop.DisplayManager"
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     )
 endif()

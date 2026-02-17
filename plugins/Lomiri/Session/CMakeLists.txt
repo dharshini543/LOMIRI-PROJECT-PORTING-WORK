@@ -29,8 +29,8 @@ qt_add_qml_module(LomiriSession-qml
     URI Lomiri.Session
     VERSION 0.1
     SOURCES
-    plugin.h
-    plugin.cpp
+    # plugin.h
+    # plugin.cpp
     dbuslomirisessionservice.h
     dbuslomirisessionservice.cpp
     orientationlock.h
